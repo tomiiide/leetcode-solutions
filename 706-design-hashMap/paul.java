@@ -29,16 +29,11 @@ class MyHashMap {
     }
     
     public int get(int key) {
-        LinkedList list = store[hash(key)];
-        if(list == null) return -1;
+        int index = findKeyIndex(key);
+        if(index == -1) return -1;
         
-        for(Object item : list) {
-            Node node = (Node) item;
-            if(node.key == key) {
-                return node.value;
-            }
-        }
-        return -1;
+        LinkedList list = store[hash(key)];
+        return ((Node) list.get(index)).value;
     }
     
     public void remove(int key) {
